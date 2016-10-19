@@ -9,8 +9,8 @@ public class Main {
 		BeanLocator.createContext("beans.xml");
   	   	
   	   	// Get managed bean instance
-  	   	Service main = BeanLocator.getInstance(Service.class);
-		LoggerFactory.getLogger(Main.class).info("VERSION = " + main.getVersion());
+  	   	Service service = BeanLocator.getInstance(Service.class);
+		LoggerFactory.getLogger(Main.class).info("VERSION = " + service.getVersion());
 		
 	}
 }

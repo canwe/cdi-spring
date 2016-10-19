@@ -12,8 +12,8 @@ public class Main {
 	    		new ClassPathXmlApplicationContext(new String[] {"Spring-AutoScan.xml"});
   	   	
   	   	// Get managed bean instance
-  	   	Service main = context.getBean(Service.class);
-		LoggerFactory.getLogger(Main.class).info("VERSION = " + main.getVersion());
+  	   	Service service = context.getBean(Service.class);
+		LoggerFactory.getLogger(Main.class).info("VERSION = " + service.getVersion());
 		
 	}
 }
