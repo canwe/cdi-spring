@@ -10,7 +10,8 @@
 	<modules>
 		<module>annotations</module>
 		<module>configuration</module>
-			
+
+		<module>locator</module>
 	</modules>
 	
 
