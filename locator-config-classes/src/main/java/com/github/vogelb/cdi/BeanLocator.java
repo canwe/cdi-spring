@@ -31,7 +31,7 @@ public class BeanLocator {
 	 * 
 	 * @see ClassPathXmlApplicationContext#ClassPathXmlApplicationContext(String...)
 	 */
-	public static void createContext(final Class ... contextElements) {
+	public static void createContext(final Class<?> ... contextElements) {
 		if (contextElements.length == 0) {
 			throw new IllegalArgumentException("Classpath is empty for ");
 		}
