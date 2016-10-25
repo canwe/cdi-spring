@@ -9,7 +9,26 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class BeanLocator {
 
-	private static ApplicationContext context; 
+	private static final Object MUTEX = new Object();
+	private static ApplicationContext context;
+	
+	private BeanLocator() { }
+	
+	private static void initialize(ApplicationContext theContext) {
+		synchronized(MUTEX) {
+			if (context != null) {
+				throw new IllegalStateException("BeanLocator has already been initialized");
+			}
+			context = theContext;
+		}
+	}
+	
+	private static ApplicationContext getContext() {
+		if (context == null) {
+			throw new IllegalStateException("BeanLocator has not been initialized");
+		}
+		return context;
+	}
 	
 	/**
 	 * Create the Locator context.
@@ -21,7 +40,7 @@ public class BeanLocator {
 		if (contextElements.length == 0) {
 			throw new IllegalArgumentException("Classpath is empty for ");
 		}
-		context = new ClassPathXmlApplicationContext(contextElements);		
+		initialize(new ClassPathXmlApplicationContext(contextElements));		
 	}
 	
 	/**
@@ -30,7 +49,7 @@ public class BeanLocator {
 	 * @return the bean instance
 	 */
 	public static <T> T getInstance(final Class<T> beanInterface) {
-		return context.getBean(beanInterface);
+		return getContext().getBean(beanInterface);
 	}
 	
 }
