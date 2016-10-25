@@ -12,6 +12,7 @@
 		<module>configuration</module>
 
 		<module>locator</module>
+		<module>locator-config-classes</module>
 	</modules>
 	
 
